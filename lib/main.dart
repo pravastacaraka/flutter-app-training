@@ -38,6 +38,29 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var data = [
+    {
+      "task": "Go jogging with Christin",
+      "time": "07.00 AM",
+      "status": "now"
+    },
+    {
+      "task": "Send project file",
+      "time": "08.00 AM",
+      "status": "waiting"
+    },
+    {
+      "task": "Meeting with client",
+      "time": "10.00 AM",
+      "status": "urgent"
+    },
+    {
+      "task": "Email client",
+      "time": "13.00 PM",
+      "status": "waiting"
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,137 +70,92 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
         color: Color(0xFFF8FCFF),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Padding(
+              padding: EdgeInsets.only(top: 20, left: 15, right: 15, bottom: 10),
+              child: Text(
+                "Today",
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF8A88B1)
+                ),
+              ),
+            ),
             Expanded(
-              child: ListView(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(top: 20, left: 15, right: 15, bottom: 10),
-                    child: Text(
-                      "Today",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF8A88B1)
+              child: ListView.builder(
+                itemCount: data.length,
+                itemBuilder: (context, i) {
+                  return Card(
+                      elevation: 5,
+                      shadowColor: Color.fromRGBO(0, 0, 0, 0.3),
+                      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                    ),
-                  ),
-
-                  // Card Section
-                  Card(
-                    elevation: 5,
-                    shadowColor: Color.fromRGBO(0, 0, 0, 0.3),
-                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: ClipPath(
-                      clipper: ShapeBorderClipper(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)
-                        ),
-                      ),
-
-                      // Card Body
-                      child: Container(
-                        height: 80,
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            left: BorderSide(color: Colors.lightGreenAccent, width: 8)
-                          )
-                        ),
-                        child: Center(
-                          // Table Content
-                          child: Table(
-                            columnWidths: {
-                              0: FlexColumnWidth(2),
-                              1: FlexColumnWidth(8),
-                              2: FlexColumnWidth(),
-                            },
-                            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                            children: [
-                              TableRow(
-                                children: [
-                                  Text(
-                                    "07.00 AM",
-                                    style: TextStyle(
-                                      fontSize: 13,
-                                      color: Color.fromRGBO(0, 0, 0, 0.4)
-                                    )
-                                  ),
-                                  Text(
-                                    "Go jogging with Christin",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFF574F89)
-                                    ),
-                                  ),
-                                  Icon(Icons.notifications)
-                                ]
-                              )
-                            ],
-                          )
-                        )
-                      )
-                    )
-                  ),
-                  Card(
-                    elevation: 5,
-                    shadowColor: Color.fromRGBO(0, 0, 0, 0.3),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                    child: Container(
-                      height: 80,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Center(
-                        child: Table(
-                          columnWidths: {
-                            0: FlexColumnWidth(2),
-                            1: FlexColumnWidth(8),
-                            2: FlexColumnWidth(),
-                          },
-                          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                          children: [
-                            TableRow(
-                              children: [
-                                Text(
-                                  "08.00 AM",
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    color: Color.fromRGBO(0, 0, 0, 0.4)
+                      child: ClipPath(
+                          clipper: ShapeBorderClipper(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)
+                            ),
+                          ),
+                          child: Container(
+                              height: 80,
+                              padding: EdgeInsets.symmetric(horizontal: 5),
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                      left: BorderSide(color: Colors.lightGreen, width: 8)
                                   )
-                                ),
-                                Text(
-                                  "Send project file",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xFF574F89)
-                                  ),
-                                ),
-                                Icon(Icons.notifications)
-                              ]
-                            )
-                          ],
-                        )
+                              ),
+                              child: Center(
+                                // Table Content
+                                  child: Table(
+                                    columnWidths: {
+                                      0: FlexColumnWidth(1),
+                                      1: FlexColumnWidth(2),
+                                      2: FlexColumnWidth(6),
+                                      3: FlexColumnWidth(1),
+                                    },
+                                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                                    children: [
+                                      TableRow(
+                                        children: [
+                                          Radio(
+                                            value: null,
+                                            groupValue: "",
+                                            onChanged: (value) {},
+                                          ),
+                                          Text(
+                                              data[i]['time'],
+                                              style: TextStyle(
+                                                  fontSize: 13,
+                                                  color: Color.fromRGBO(0, 0, 0, 0.4)
+                                              )
+                                          ),
+                                          Text(
+                                            data[i]['task'],
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                                color: Color(0xFF574F89)
+                                            ),
+                                          ),
+                                          Icon(Icons.notifications, color: Color.fromRGBO(0, 0, 0, 0.15),)
+                                        ]
+                                      )
+                                    ],
+                                  )
+                              )
+                          )
                       )
-                    )
-                  )
-                ],
+                  );
+                }
               )
             )
           ],
         ),
       )
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: _incrementCounter,
-      //   tooltip: 'Increment',
-      //   child: Icon(Icons.add),
-      // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
