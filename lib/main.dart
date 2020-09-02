@@ -11,22 +11,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
+        primarySwatch: Colors.teal,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'To Do List'),
     );
   }
 }
@@ -50,68 +38,146 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      body: Container(
+        color: Color(0xFFF8FCFF),
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+          children: [
+            Expanded(
+              child: ListView(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 20, left: 15, right: 15, bottom: 10),
+                    child: Text(
+                      "Today",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF8A88B1)
+                      ),
+                    ),
+                  ),
+
+                  // Card Section
+                  Card(
+                    elevation: 5,
+                    shadowColor: Color.fromRGBO(0, 0, 0, 0.3),
+                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: ClipPath(
+                      clipper: ShapeBorderClipper(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)
+                        ),
+                      ),
+
+                      // Card Body
+                      child: Container(
+                        height: 80,
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        decoration: BoxDecoration(
+                          border: Border(
+                            left: BorderSide(color: Colors.lightGreenAccent, width: 8)
+                          )
+                        ),
+                        child: Center(
+                          // Table Content
+                          child: Table(
+                            columnWidths: {
+                              0: FlexColumnWidth(2),
+                              1: FlexColumnWidth(8),
+                              2: FlexColumnWidth(),
+                            },
+                            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                            children: [
+                              TableRow(
+                                children: [
+                                  Text(
+                                    "07.00 AM",
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      color: Color.fromRGBO(0, 0, 0, 0.4)
+                                    )
+                                  ),
+                                  Text(
+                                    "Go jogging with Christin",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF574F89)
+                                    ),
+                                  ),
+                                  Icon(Icons.notifications)
+                                ]
+                              )
+                            ],
+                          )
+                        )
+                      )
+                    )
+                  ),
+                  Card(
+                    elevation: 5,
+                    shadowColor: Color.fromRGBO(0, 0, 0, 0.3),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                    child: Container(
+                      height: 80,
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Center(
+                        child: Table(
+                          columnWidths: {
+                            0: FlexColumnWidth(2),
+                            1: FlexColumnWidth(8),
+                            2: FlexColumnWidth(),
+                          },
+                          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                          children: [
+                            TableRow(
+                              children: [
+                                Text(
+                                  "08.00 AM",
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: Color.fromRGBO(0, 0, 0, 0.4)
+                                  )
+                                ),
+                                Text(
+                                  "Send project file",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xFF574F89)
+                                  ),
+                                ),
+                                Icon(Icons.notifications)
+                              ]
+                            )
+                          ],
+                        )
+                      )
+                    )
+                  )
+                ],
+              )
+            )
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      )
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: _incrementCounter,
+      //   tooltip: 'Increment',
+      //   child: Icon(Icons.add),
+      // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
