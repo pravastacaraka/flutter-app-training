@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_day_one_training/home.dart';
+import 'home.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.teal,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'To Do List'),
+      home: MyHomePage(title: 'Premiere League List'),
     );
   }
 }

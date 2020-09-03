@@ -1,4 +1,4 @@
-# flutter_day_one_training
+# flutter_app_training
 
 A new Flutter application.
 
